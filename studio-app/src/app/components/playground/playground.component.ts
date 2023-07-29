@@ -8,7 +8,7 @@ import { RepoMasterService } from 'src/app/services/repo-master.service';
   styleUrls: ['./playground.component.css']
 })
 export class PlaygroundComponent implements OnInit {
-  compType = '';
+  compType = 'none';
   showConfigurator = false;
   constructor(private tmpData: TmpDataService, private dataService: RepoMasterService) {
 
@@ -22,9 +22,7 @@ export class PlaygroundComponent implements OnInit {
     ev.stopPropagation();
   }
   onDrop(ev: any) {
-    console.log('drop event');
     this.compType = this.dataService.getDropTarget();
-    console.log('comp type', this.compType);
     this.showConfigurator = true;
   }
 }

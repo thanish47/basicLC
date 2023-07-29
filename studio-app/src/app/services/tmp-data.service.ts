@@ -394,4 +394,8 @@ export class TmpDataService {
   getDefaultTreeGraphData() {
     return this.defaultData;
   }
+
+  getDefaultData() {
+    return this.defaultData;
+  }
 }

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from "@angular/material/icon"
 import { MatListModule } from '@angular/material/list'
+import { NgJsonEditorModule } from 'ang-jsoneditor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { TreeGraphComponent } from './components/tree-graph/tree-graph.component
     MatIconModule,
     MatListModule,
     TreeGridComponent,
+    NgJsonEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

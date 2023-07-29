@@ -9,7 +9,11 @@
 .play-container.noShrink {
     height: calc(100vh - 50px);
 }
+.play-container .helpText {
+    margin: 50px 10px;
+    width: 90%;
+}
 .configure-container {
-    width: 230px;
-    flex: 0 0 230px;
+    width: 430px;
+    flex: 0 0 430px;
 }
