@@ -11,6 +11,10 @@
 npm-debug.log
 yarn-error.log
 
+/studio-app/node_modules
+/studio-app/npm-debug.log
+/studio-app/yarn-error.log
+
 # IDEs and editors
 .idea/
 .project
@@ -31,6 +35,13 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
+/studio-app/.vscode/*
+!/studio-app/.vscode/settings.json
+!/studio-app/.vscode/tasks.json
+!/studio-app/.vscode/launch.json
+!/studio-app/.vscode/extensions.json
+/studio-app/.history/*
+
 # Miscellaneous
 /.angular/cache
 .sass-cache/
@@ -39,6 +50,15 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+
+/studio-app/.angular/cache
+/studio-app/.sass-cache/
+/studio-app/connect.lock
+/studio-app/coverage
+/studio-app/libpeerconnection.log
+/studio-app/typings
+/studio-app/testem.log
+/studio-app/typings
 
 # System files
 .DS_Store
