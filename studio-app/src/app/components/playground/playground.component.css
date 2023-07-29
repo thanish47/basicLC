@@ -1,0 +1,15 @@
+.work-container {
+    display: flex;
+     width: calc(100vw - 61px);
+}
+
+.play-container {
+    flex: 1;
+}
+.play-container.noShrink {
+    height: calc(100vh - 50px);
+}
+.configure-container {
+    width: 230px;
+    flex: 0 0 230px;
+}

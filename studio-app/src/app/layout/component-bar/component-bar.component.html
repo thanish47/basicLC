@@ -1,0 +1,18 @@
+<div class="compo-bar-container" (dragover)="allowDrop($event)">
+    <ul class="compo-list">
+        <li class="compo-list-item" draggable="true" (dragstart)="dragStart($event, 'treeGrid')" id="treeGrid">
+            <mat-card>
+                <mat-card-content>
+                    <img src="assets/svg/tree-table.svg" width="24px" height="24px"/>
+                </mat-card-content>
+            </mat-card>
+        </li>
+        <li class="compo-list-item" draggable="true" (dragstart)="dragStart($event, 'treeGraph')" id="treeGraph">
+            <mat-card>
+                <mat-card-content>
+                    <img src="assets/svg/tree-45.svg" width="24px" height="24px"/>
+                </mat-card-content>
+            </mat-card>
+        </li>
+    </ul>
+</div>

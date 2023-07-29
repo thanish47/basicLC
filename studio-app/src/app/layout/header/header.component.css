@@ -1,0 +1,19 @@
+.header {
+    height: 50px;
+    background-color: #3F51B5;
+}
+.header .app-title {
+    display: inline-block;
+    /* margin-top: 15px; */
+    margin-left: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+.header .img-holder {
+    display: inline-block;
+    background-color: white;
+    padding: 2px;
+    margin-left: 5px;
+    margin-top: 2px;
+}

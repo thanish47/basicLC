@@ -1,0 +1,17 @@
+.compo-bar-container {
+    height: calc(100vh - 50px);
+    background-color: #f8f8f8;
+    border-right: solid 1px #ccc;
+}
+.compo-bar-container .compo-list {
+    margin-top:0px;
+    padding: 5px;
+    list-style: none;
+}
+.compo-bar-container .compo-list .compo-list-item{
+    margin-bottom: 5px;
+}
+.compo-bar-container .compo-list-item .mat-mdc-card-content{
+    padding-left: 12px !important;
+    padding-bottom: 12px !important;
+}

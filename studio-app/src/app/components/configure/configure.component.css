@@ -1,0 +1,4 @@
+.configure-container {
+    height: calc(100vh - 50px);
+    border-left: solid 1px #ccc;
+}
