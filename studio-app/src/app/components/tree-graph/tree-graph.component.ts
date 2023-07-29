@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3'
 
 let treeData =
@@ -386,7 +386,8 @@ let treeData =
 @Component({
   selector: 'app-tree-graph',
   templateUrl: './tree-graph.component.html',
-  styleUrls: ['./tree-graph.component.css']
+  styleUrls: ['./tree-graph.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TreeGraphComponent implements OnInit {
   
@@ -511,6 +512,9 @@ export class TreeGraphComponent implements OnInit {
       .style("fill", (d: any) => {
           return d._children ? "lightsteelblue" : "#fff";
       })
+      .style("stroke", (d: any) => {
+        return ;
+    })
       .attr('cursor', 'pointer');
   
   

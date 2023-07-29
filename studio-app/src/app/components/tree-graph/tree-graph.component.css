@@ -1,14 +1,14 @@
-.node circle {
+  #hierarchy-container .node circle {
     fill: #fff;
     stroke: steelblue;
     stroke-width: 1px;
   }
   
-  .node text {
+  #hierarchy-container .node text {
     font: 14px sans-serif;
   }
   
-  .link {
+  #hierarchy-container path.link {
     fill: none;
     stroke: #ccc;
     stroke-width: 1px;
