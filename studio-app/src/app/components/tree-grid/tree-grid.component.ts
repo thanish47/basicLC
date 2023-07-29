@@ -3,38 +3,19 @@ import {Component} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { TmpDataService } from 'src/app/services/tmp-data.service';
 
 /**
  * Food data with nested structure.
  * Each node has a name and an optional list of children.
  */
-interface FoodNode {
+interface TreeNode {
   name: string;
-  children?: FoodNode[];
+  children?: TreeNode[];
 }
 
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
-  },
-  {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
-      },
-      {
-        name: 'Orange',
-        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
-      },
-    ],
-  },
-];
-
 /** Flat node with expandable and level information */
-interface ExampleFlatNode {
+interface TreeFlatNode {
   expandable: boolean;
   name: string;
   level: number;
@@ -48,7 +29,7 @@ interface ExampleFlatNode {
   imports: [MatTreeModule, MatButtonModule, MatIconModule]
 })
 export class TreeGridComponent {
-  private _transformer = (node: FoodNode, level: number) => {
+  private _transformer = (node: TreeNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
@@ -56,7 +37,7 @@ export class TreeGridComponent {
     };
   };
 
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
+  treeControl = new FlatTreeControl<TreeFlatNode>(
     node => node.level,
     node => node.expandable,
   );
@@ -70,10 +51,11 @@ export class TreeGridComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() {
-    this.dataSource.data = TREE_DATA;
+  constructor( private defaultDataService: TmpDataService ) {
+    const initData = this.defaultDataService.getDefaultTreeGridData();
+    this.dataSource.data = initData;
   }
 
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+  hasChild = (_: number, node: TreeFlatNode) => node.expandable;
 
 }

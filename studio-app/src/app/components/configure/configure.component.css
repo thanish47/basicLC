@@ -2,3 +2,12 @@
     height: calc(100vh - 50px);
     border-left: solid 1px #ccc;
 }
+.configure-container .form-header-cont {
+    background-color: #e7e7e7;
+}
+.configure-container .configure-header {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+}
