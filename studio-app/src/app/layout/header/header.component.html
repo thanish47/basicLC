@@ -1,6 +1,23 @@
 <header>
     <div class="header">
-        <div class="img-holder"><img src="assets/svg/low-code.svg" width="50px"/></div>
-        <span class="app-title">Basic Low code playground</span>
+        <div class="left-part inlineblock">
+            <div class="img-holder inlineblock"><img src="assets/svg/low-code.svg" width="50px"/></div>
+            <span class="app-title inlineblock">Basic Low code playground</span>
+        </div>
+        <div class="right-part inlineblock">
+            <div class="badger-container inlineblock" 
+                matBadge="{{pageNumber}}" matBadgeOverlap="false" matBadgeColor="accent"
+                matTooltip="Pages Basket"
+            >
+                <img src="assets/svg/page.svg" width="24px"/>
+            </div>
+            <div class="badger-container inlineblock" 
+                matBadge="{{compoNumber}}" matBadgeOverlap="false" matBadgeColor="accent"
+                matTooltip="Components Basket"
+            >
+                <img src="assets/svg/component.svg" width="24px"/>
+            </div>
+        </div>
+        
     </div>
 </header>

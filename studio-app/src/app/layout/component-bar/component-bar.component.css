@@ -10,6 +10,7 @@
 }
 .compo-bar-container .compo-list .compo-list-item{
     margin-bottom: 5px;
+    cursor: move;
 }
 .compo-bar-container .compo-list-item .mat-mdc-card-content{
     padding-left: 12px !important;
