@@ -4,6 +4,11 @@ import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from "@angular/material/icon"
 import { MatListModule } from '@angular/material/list'
 import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +37,13 @@ import { TreeGraphComponent } from './components/tree-graph/tree-graph.component
     MatIconModule,
     MatListModule,
     TreeGridComponent,
-    NgJsonEditorModule
+    NgJsonEditorModule,
+    FormsModule,
+    ReactiveFormsModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

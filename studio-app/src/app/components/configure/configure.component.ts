@@ -10,10 +10,15 @@ import { TmpDataService } from 'src/app/services/tmp-data.service';
 export class ConfigureComponent {
   data: any;
   editorOptions: any;
+  dataSource: any;
   constructor(private defaultDataService: TmpDataService) {
     this.data = this.defaultDataService.getDefaultData();
-    this.editorOptions = new JsonEditorOptions()
-    this.editorOptions.modes = ['code', 'tree'];
+    this.editorOptions = new JsonEditorOptions();
+    this.editorOptions.mode = 'code';
+    this.editorOptions.enableSort = false;
+    this.editorOptions.enableTransform = false;
+    this.editorOptions.statusBar = false;
+    this.dataSource = 'local'
   }
 
 

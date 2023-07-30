@@ -1,9 +1,26 @@
 <div class="configure-container">
-    <div class="form-header-cont">
+    <div class="form-header">
         <span class="configure-header">Configure your Component</span>
     </div>
-    <div class="data-editor">
-        <label>Edit Default Data:</label>
-        <json-editor [options]="editorOptions" [data]="data"></json-editor>
+    <div class="form-container">
+        <label>Data Source:</label>
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="dataSource">
+            <mat-radio-button value="local">Local Data</mat-radio-button>
+            <mat-radio-button value="remote">Remote URL</mat-radio-button>
+        </mat-radio-group>
+        <div class="data-editor" *ngIf="dataSource === 'local'">
+            <span class="editor-help-text">*pre-loaded with sample data, please edit to desired</span>
+            <json-editor [options]="editorOptions" [data]="data"></json-editor>
+        </div>
+        <div class="remote-form" *ngIf="dataSource === 'remote'">
+            <mat-form-field class="full-width-field">
+                <mat-label>Remote URL</mat-label>
+                <input matInput>
+                <mat-hint align="end">URL format: https://example.com/api</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="form-footer">
+        <button mat-raised-button color="primary">Save</button>
     </div>
 </div>
