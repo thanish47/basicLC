@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   pageNumber = 0;
-  compoNumber = 1;
+  compoNumber = 0;
 }
