@@ -8,22 +8,22 @@
             <input matInput>
         </mat-form-field>
         <label>Data Source:</label>
-        <mat-radio-group aria-label="Select an option" [(ngModel)]="dataSource">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="componentData.dataSource" (ngModelChange)="onDataSourceChange()">
             <mat-radio-button value="local">Local Data</mat-radio-button>
             <mat-radio-button value="remote">Remote URL</mat-radio-button>
         </mat-radio-group>
-        <div class="data-editor" *ngIf="dataSource === 'local'">
+        <div class="data-editor" *ngIf="componentData.dataSource === 'local'">
             <span class="editor-help-text">*pre-loaded with sample data, please edit to desired</span>
-            <json-editor [options]="editorOptions" [data]="data"></json-editor>
+            <json-editor [options]="editorOptions" [data]="componentData.data"></json-editor>
         </div>
-        <mat-form-field class="full-width-field" *ngIf="dataSource === 'remote'">
+        <mat-form-field class="full-width-field" *ngIf="componentData.dataSource === 'remote'">
             <mat-label>Remote URL</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)]="componentData.dataUrl">
             <mat-hint align="end">URL format: https://example.com/api</mat-hint>
         </mat-form-field>
     </div>
     <div class="form-footer">
-        <button mat-raised-button color="primary">Apply</button>
-        <button mat-raised-button class="ml10">Add to Component basket</button>
+        <button mat-raised-button color="primary" (click)="applyConfiguration()">Apply</button>
+        <button mat-raised-button class="ml10" (click)="addCompoToBasket()">Add to Component basket</button>
     </div>
 </div>

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +11,61 @@ export class RepoMasterService {
       label: "Tree Grid",
       name: "treeGrid",
       componentRef: "treeGridComponent",
-      icon: "tree-table"
+      icon: "tree-table",
+      metaData: {
+        label: '',
+        dataSource: 'remote',
+        dataUrl: '/assets/data/sampleTreeGrid.json',
+        additionals: {
+          dataType: 'object'
+        }
+      }
     },{
       label: "Tree Graph",
       name: "treeGraph",
       componentRef: "treeGraphComponent",
-      icon: "tree-45"
+      icon: "tree-45",
+      metaData: {
+        label: '',
+        dataSource: 'remote',
+        dataUrl: '/assets/data/sampleTreeGraph.json',
+        additionals: {
+          dataType: 'array'
+        }
+      }
     }
   ];
   dropTarget: '';
-  constructor() { }
+  private componentsAdded: BehaviorSubject<any> = new BehaviorSubject<any>({});
+
+  constructor(private http: HttpClient) { }
 
   setDropTarget(comp: any) {
-    console.log('setting drop', comp);
+    //console.log('setting drop', comp);
     this.dropTarget = comp;
   }
 
   getDropTarget() {
     return this.dropTarget;
   }
+
+  getComponentsAdded(): BehaviorSubject<any> {
+    return this.componentsAdded;
+  }
+
+  updateComponentCount(component: any) {
+    this.componentsAdded.next({...this.componentsAdded.value, component})
+  }
+
+  fetchComponentData(url: string) {
+    return this.http.get(url)
+  }
+
+  getCompoMetaData(compName: string) {
+    const filteredComp = this.compoDef.filter((compDef: any) => {
+      return (compDef.name === compName);
+    })
+    return filteredComp[0];
+  }
+
 }

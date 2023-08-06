@@ -1,5 +1,7 @@
 .configure-container {
     height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
     border-left: solid 1px #ccc;
     overflow-x: auto;
 }
@@ -8,6 +10,7 @@
 }
 .configure-container .form-container {
     margin-top: 10px;
+    flex-grow: 1;
 }
 .configure-container .form-container .remote-form {
     width: 400px;
@@ -43,6 +46,7 @@
     align-content: flex-end;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding-bottom: 10px;
 }
 .configure-container .form-footer .ml10 {
     margin-left: 10px;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
 import * as d3 from 'd3'
 import { TmpDataService } from 'src/app/services/tmp-data.service';
 
@@ -8,12 +8,12 @@ import { TmpDataService } from 'src/app/services/tmp-data.service';
   styleUrls: ['./tree-graph.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class TreeGraphComponent implements OnInit {
-    initTreeData: any;
+export class TreeGraphComponent implements OnInit, OnChanges {
+    @Input() data: any;
     margin = {top: 20, right: 90, bottom: 30, left: 90}
     width = 960 - this.margin.left - this.margin.right;
     height = 500 - this.margin.top - this.margin.bottom;
-
+    hideTree = true;
     svg: any;
     i = 0;
     duration = 750;
@@ -21,29 +21,45 @@ export class TreeGraphComponent implements OnInit {
     treemap: any;
 
   constructor(private defaultDataService: TmpDataService) {
-    this.initTreeData = this.defaultDataService.getDefaultTreeGraphData();
+    //this.initTreeData = this.defaultDataService.getDefaultTreeGraphData();
   }
   ngOnInit(): void {
-    this.svg = d3.select("#hierarchy-container").append("svg")
-    .attr("width", this.width + this.margin.right + this.margin.left)
-    .attr("height", this.height + this.margin.top + this.margin.bottom)
+   
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for (let propName in changes) {
+      let change = changes[propName];
+      if(change && change.currentValue) {
+        this.data = change.currentValue.data;
+        this.hideTree = false;
+        const self = this;
+        setTimeout(()=>{self.renderTree(self)}, 400);
+        //this.renderTree();
+      }
+    }
+  }
+
+  renderTree(rootSelf: any) {
+    rootSelf.svg = d3.select("#hierarchy-container").append("svg")
+    .attr("width", rootSelf.width + rootSelf.margin.right + rootSelf.margin.left)
+    .attr("height", rootSelf.height + rootSelf.margin.top + rootSelf.margin.bottom)
     .append("g")
     .attr("transform", "translate("
-          + this.margin.left + "," + this.margin.top + ")");
+          + rootSelf.margin.left + "," + rootSelf.margin.top + ")");
 
-    this.treemap = d3.tree().size([this.height, this.width]);
-    this.root = d3.hierarchy(this.initTreeData, (d: any)  => { return d.children; });
-    this.root.x0 = this.height / 2;
-    this.root.y0 = 0;
+    rootSelf.treemap = d3.tree().size([rootSelf.height, rootSelf.width]);
+    rootSelf.root = d3.hierarchy(rootSelf.data, (d: any)  => { return d.children; });
+    rootSelf.root.x0 = this.height / 2;
+    rootSelf.root.y0 = 0;
 
     // Collapse after the second level
     let self = this;
-    this.root.children.forEach((item: any) => {
+    rootSelf.root.children.forEach((item: any) => {
       self.collapse(item);
     });
 
-    this.update(this.root);
-
+    rootSelf.update(rootSelf.root);
   }
 
   collapse(d: any) {
