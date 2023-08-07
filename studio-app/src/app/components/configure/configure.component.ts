@@ -11,10 +11,11 @@ import { RepoMasterService } from 'src/app/services/repo-master.service';
 export class ConfigureComponent implements OnChanges {
   @Input() compoObj: any;
   @Output() onConfigChange = new EventEmitter<any>();
-  componentData: any = {
+  componentData: any = {};
+  metaData: any = {
     data: [],
     dataSource: ""
-  };
+  }
   initData: any;
   isDataReady = false;
   sampleData: any;
@@ -32,32 +33,38 @@ export class ConfigureComponent implements OnChanges {
     this.editorOptions.enableTransform = false;
     this.editorOptions.statusBar = false;
     
-    //this.compoCount$ = this.repoMaster.getComponentsAdded();
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     for (let propName in changes) {
       let change = changes[propName];
       this.componentData = change.currentValue;
+      this.metaData = this.componentData.metaData;
       this.initData = {...this.componentData};
       this.isDataReady = true;
     }
   }
 
   applyConfiguration() {
-    if(this.componentData.dataSource !== this.initData.dataSource) {
-      if(this.componentData.dataSource === 'local') {
+    if(this.metaData.dataSource !== this.initData.metaData.dataSource) {
+      if(this.metaData.dataSource === 'local') {
         //fetch the updated data from editor, and reflect it to componentData.data, and re-render the tree
-      } else if(this.componentData.dataSource === 'remote') {
+      } else if(this.metaData.dataSource === 'remote') {
         //check if the entered URL is in correct format, if yes fetch the data.. 
         //if result is without error, then re-render the tree with it
       }
     }
+    this.componentData.metaData = this.metaData;
     this.onConfigChange.emit(this.componentData);
   }
 
   addCompoToBasket() {
-    this.repoMaster.updateComponentCount(this.componentData);
+    let name = this.componentData.name;
+    let tempObj: any = {};
+    this.componentData.metaData = this.metaData;
+    tempObj[name] = this.componentData;
+    this.repoMaster.updateComponentCount(tempObj);
   }
   onDataSourceChange(){
 

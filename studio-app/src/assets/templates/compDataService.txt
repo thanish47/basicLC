@@ -1,4 +1,3 @@
-module.exports = (serviceContent) => `
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,4 +6,3 @@ import { Injectable } from '@angular/core';
 export class compDataService {
     ${serviceContent}
 }
-`

@@ -38,3 +38,6 @@
     margin-top: 16px;
     margin-right: 30px;
 }
+.header .right-part .hover-enabled {
+    cursor: pointer;
+}

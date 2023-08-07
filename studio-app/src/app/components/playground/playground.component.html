@@ -1,7 +1,7 @@
 <div class="work-container" [ngClass]="{'fullRow': !showConfigurator}">
     <div class="play-container" (drop)="onDrop($event)" (dragover)="allowDrop($event)" [ngClass]="{'useFlex': showConfigurator, 'noShrink': !showConfigurator}">
-        <app-tree-grid *ngIf="compType === 'treeGrid'" [treeData]="metaData"></app-tree-grid>
-        <app-tree-graph *ngIf="compType === 'treeGraph'" [data]="metaData"></app-tree-graph>
+        <app-tree-grid *ngIf="compType === 'treeGrid'" [treeData]="compData.metaData"></app-tree-grid>
+        <app-tree-graph *ngIf="compType === 'treeGraph'" [data]="compData.metaData"></app-tree-graph>
         <div class="helpText" *ngIf="compType === 'none'">
             <mat-card>
                 <mat-card-content>
@@ -16,6 +16,6 @@
         </div>
     </div>
     <div class="configure-container" *ngIf="showConfigurator">
-        <app-configure [compoObj]="metaData" (onConfigChange)="onConfigChange($event)"></app-configure>
+        <app-configure [compoObj]="compData" (onConfigChange)="onConfigChange($event)"></app-configure>
     </div>
 </div>

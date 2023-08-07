@@ -6,7 +6,7 @@
         </div>
         <div class="right-part">
             <div class="sel-framwork">
-                 Current Framework for export: <button mat-button>Angular</button>
+                 Current Framework for export: <button mat->Angular</button>
             </div>
             <!-- <div class="badger-container inlineblock" 
                 matBadge="{{pageNumber}}" matBadgeOverlap="false" matBadgeColor="accent"
@@ -14,9 +14,10 @@
             >
                 <img src="assets/svg/page.svg" width="24px"/>
             </div> -->
-            <div class="badger-container" 
+            <div class="badger-container" [ngClass]="{'hover-enabled': compoNumber>0}"
                 matBadge="{{compoNumber}}" matBadgeOverlap="false" matBadgeColor="accent"
-                matTooltip="Components Basket"
+                [matTooltip]="getToolTip()"
+                (click)="exportComponents()"
             >
                 <img src="assets/svg/component.svg" width="24px"/>
             </div>

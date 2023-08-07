@@ -10,7 +10,9 @@ export class PlaygroundComponent implements OnInit, OnChanges {
   compType = 'none';
   showConfigurator = false;
   configurationInProgress = false;
-  metaData: any;
+  compData: any = {
+    metaData: {}
+  };
   initialMetaData: any;
   constructor(private dataService: RepoMasterService) {
 
@@ -34,31 +36,31 @@ export class PlaygroundComponent implements OnInit, OnChanges {
       this.compType = this.dataService.getDropTarget();
       let data = this.dataService.getCompoMetaData(this.compType);
       if(data.metaData.dataSource === 'remote') {
-        this.fetchFromRemote(data.metaData);
+        this.fetchFromRemote(data);
       }
     }
   }
   fetchFromRemote(data: any) {
-    this.dataService.fetchComponentData(data.dataUrl).subscribe({
+    this.dataService.fetchComponentData(data.metaData.dataUrl).subscribe({
       next: (result) => {
-        data.data = result;
+        data.metaData.data = result;
         this.updateMeta(data);
       },
       error: (err) => {
-        data.data = (data.additionals.dataType === 'array') ? [] : {};
+        data.metaData.data = (data.metaData.additionals.dataType === 'array') ? [] : {};
         this.updateMeta(data);
       }
     })
   }
   updateMeta(data: any) {
-    this.metaData = data;
+    this.compData = data;
     this.showConfigurator = true;
   }
   onConfigChange(updatedMeta: any) {
-    if(updatedMeta.dataSource === 'remote' && updatedMeta.dataUrl !== this.metaData.dataUrl) {
+    if(updatedMeta.metaData.dataSource === 'remote' && updatedMeta.metaData.dataUrl !== this.compData.metaData.dataUrl) {
       this.fetchFromRemote(updatedMeta);
-    } else if(updatedMeta.dataSource === 'local') {
-      this.metaData = {...updatedMeta};
+    } else if(updatedMeta.metaData.dataSource === 'local') {
+      this.compData = {...updatedMeta};
     }
   }
 }

@@ -17,7 +17,10 @@ export class RepoMasterService {
         dataSource: 'remote',
         dataUrl: '/assets/data/sampleTreeGrid.json',
         additionals: {
-          dataType: 'object'
+          dataType: 'array',
+          name: "TreeGraph",
+          prefix: "app",
+          selector: "tree-graph"
         }
       }
     },{
@@ -30,7 +33,10 @@ export class RepoMasterService {
         dataSource: 'remote',
         dataUrl: '/assets/data/sampleTreeGraph.json',
         additionals: {
-          dataType: 'array'
+          dataType: 'object',
+          name: "TreeGrid",
+          prefix: "app",
+          selector: "tree-grid"
         }
       }
     }
@@ -41,7 +47,6 @@ export class RepoMasterService {
   constructor(private http: HttpClient) { }
 
   setDropTarget(comp: any) {
-    //console.log('setting drop', comp);
     this.dropTarget = comp;
   }
 
@@ -54,7 +59,7 @@ export class RepoMasterService {
   }
 
   updateComponentCount(component: any) {
-    this.componentsAdded.next({...this.componentsAdded.value, component})
+    this.componentsAdded.next({...this.componentsAdded.value, ...component})
   }
 
   fetchComponentData(url: string) {

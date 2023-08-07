@@ -5,31 +5,31 @@
     <div class="form-container">
         <mat-form-field class="full-width-field">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="e.g., TreeGraph">
+            <input matInput placeholder="e.g., TreeGraph" [(ngModel)]="metaData.additionals.name">
             <mat-hint align="end">Name: used as class name. Use Capitalized format</mat-hint>
         </mat-form-field>
         <mat-form-field class="full-width-field">
             <mat-label>Selector Prefix</mat-label>
-            <input matInput placeholder="e.g., app">
+            <input matInput placeholder="e.g., app" [(ngModel)]="metaData.additionals.prefix">
             <mat-hint align="end">Selector Prefix: app prefix to prepend before selector.</mat-hint>
         </mat-form-field>
         <mat-form-field class="full-width-field">
             <mat-label>Selector</mat-label>
-            <input matInput placeholder="e.g., tree-graph">
+            <input matInput placeholder="e.g., tree-graph" [(ngModel)]="metaData.additionals.selector">
             <mat-hint align="end">Selector: used as component selector and file name.</mat-hint>
         </mat-form-field>
         <label>Data Source:</label>
-        <mat-radio-group aria-label="Select an option" [(ngModel)]="componentData.dataSource" (ngModelChange)="onDataSourceChange()">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="metaData.dataSource" (ngModelChange)="onDataSourceChange()">
             <mat-radio-button value="local">Local Data</mat-radio-button>
             <mat-radio-button value="remote">Remote URL</mat-radio-button>
         </mat-radio-group>
-        <div class="data-editor" *ngIf="componentData.dataSource === 'local'">
+        <div class="data-editor" *ngIf="metaData.dataSource === 'local'">
             <span class="editor-help-text">*pre-loaded with sample data, please edit to desired</span>
-            <json-editor [options]="editorOptions" [data]="componentData.data"></json-editor>
+            <json-editor [options]="editorOptions" [data]="metaData.data"></json-editor>
         </div>
-        <mat-form-field class="full-width-field" *ngIf="componentData.dataSource === 'remote'">
+        <mat-form-field class="full-width-field" *ngIf="metaData.dataSource === 'remote'">
             <mat-label>Remote URL</mat-label>
-            <input matInput [(ngModel)]="componentData.dataUrl">
+            <input matInput [(ngModel)]="metaData.dataUrl">
             <mat-hint align="end">URL format: https://example.com/api</mat-hint>
         </mat-form-field>
     </div>
