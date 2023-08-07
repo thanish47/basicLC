@@ -1,13 +1,26 @@
+module.exports = (prefix, selector, compname) => `
 import { Component, Input, OnInit, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
 import * as d3 from 'd3'
 
 @Component({
-  selector: 'app-tree-graph',
-  templateUrl: './tree-graph.component.html',
-  styleUrls: ['./tree-graph.component.css'],
+  selector: '${prefix}-${selector}',
+  template: '<div id="hierarchy-container" *ngIf="!hideTree"></div>',
+  styles:  ['  #hierarchy-container .node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1px;
+  }
+  #hierarchy-container .node text {
+    font: 14px sans-serif;
+  }
+  #hierarchy-container path.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1px;
+  }'],
   encapsulation: ViewEncapsulation.None
 })
-export class TreeGraphComponent implements OnChanges {
+export class ${compname}Component implements OnChanges {
     @Input() data: any;
     margin = {top: 20, right: 90, bottom: 30, left: 90}
     width = 960 - this.margin.left - this.margin.right;
@@ -59,7 +72,6 @@ export class TreeGraphComponent implements OnChanges {
     if(d.children) {
       d._children = d.children
       let self = this;
-      //d._children.forEach(self.collapse)
       d._children.forEach((item: any) => {
         self.collapse(item);
       })
@@ -144,8 +156,7 @@ export class TreeGraphComponent implements OnChanges {
         return ;
     })
       .attr('cursor', 'pointer');
-  
-  
+
     // Remove any exiting nodes
     var nodeExit = node.exit().transition()
         .duration(this.duration)
@@ -170,10 +181,7 @@ export class TreeGraphComponent implements OnChanges {
 
       // Creates a curved (diagonal) path from parent to the child nodes
     let diagonal = (s: any, d: any) => {
-        let path = `M ${s.y} ${s.x}
-                C ${(s.y + d.y) / 2} ${s.x},
-                  ${(s.y + d.y) / 2} ${d.x},
-                  ${d.y} ${d.x}`
+      let path = 'M '+s.y+' '+s.x+' C '+(s.y + d.y) / 2+ ' '+s.x+','+(s.y + d.y) / 2+' '+d.x+','+d.y+' '+d.x;
         return path
       }
   
@@ -209,3 +217,4 @@ export class TreeGraphComponent implements OnChanges {
     });
   }
 }
+`

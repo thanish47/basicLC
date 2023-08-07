@@ -4,8 +4,19 @@
     </div>
     <div class="form-container">
         <mat-form-field class="full-width-field">
-            <mat-label>Component Name</mat-label>
-            <input matInput>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="e.g., TreeGraph">
+            <mat-hint align="end">Name: used as class name. Use Capitalized format</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="full-width-field">
+            <mat-label>Selector Prefix</mat-label>
+            <input matInput placeholder="e.g., app">
+            <mat-hint align="end">Selector Prefix: app prefix to prepend before selector.</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="full-width-field">
+            <mat-label>Selector</mat-label>
+            <input matInput placeholder="e.g., tree-graph">
+            <mat-hint align="end">Selector: used as component selector and file name.</mat-hint>
         </mat-form-field>
         <label>Data Source:</label>
         <mat-radio-group aria-label="Select an option" [(ngModel)]="componentData.dataSource" (ngModelChange)="onDataSourceChange()">
