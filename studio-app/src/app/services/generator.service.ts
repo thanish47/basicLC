@@ -32,10 +32,6 @@ export class GeneratorService {
     }
   }
 
-  convertToBlob(template: string){
-    return new Blob([template], { type : 'text/javascript' })
-  }
-
   processTemplate<Promise>(comp: any) {
     let compObj = comp;
     return new Promise((resolve, reject) => {

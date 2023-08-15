@@ -41,7 +41,7 @@ export class PlaygroundComponent implements OnInit, OnChanges {
     }
   }
   fetchFromRemote(data: any) {
-    this.dataService.fetchComponentData(data.metaData.dataUrl).subscribe({
+    return this.dataService.fetchComponentData(data.metaData.dataUrl).subscribe({
       next: (result) => {
         data.metaData.data = result;
         this.updateMeta(data);
@@ -55,21 +55,25 @@ export class PlaygroundComponent implements OnInit, OnChanges {
   updateMeta(data: any) {
     this.compData = data;
     this.showConfigurator = true;
+    this.repaintPlayground()
   }
   onConfigChange(updatedMeta: any) {
-    if(updatedMeta.metaData.dataSource === 'remote' && updatedMeta.metaData.dataUrl !== this.compData.metaData.dataUrl) {
-      this.fetchFromRemote(updatedMeta);
+    if(updatedMeta.metaData.dataSource === 'remote' && updatedMeta.metaData.dataUrl) {
+      this.fetchFromRemote(updatedMeta)
     } else if(updatedMeta.metaData.dataSource === 'local') {
       this.compData = {...updatedMeta};
-      let tempCompType = this.compType;
-      this.compType = '';
-      let self = this;
-      setTimeout(()=>{
-        self.compType = tempCompType;
-      }, 400);
+      this.repaintPlayground();
     }
   }
   resetComponentData(data: any) {
     return (data.metaData.additionals.dataType === 'array') ? [] : {};
+  }
+  repaintPlayground() {
+    let tempCompType = this.compType;
+    this.compType = '';
+      let self = this;
+      setTimeout(()=>{
+        self.compType = tempCompType;
+      }, 400);
   }
 }
