@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { TmpDataService } from 'src/app/services/tmp-data.service';
 import { RepoMasterService } from 'src/app/services/repo-master.service';
@@ -11,6 +11,7 @@ import { RepoMasterService } from 'src/app/services/repo-master.service';
 export class ConfigureComponent implements OnChanges {
   @Input() compoObj: any;
   @Output() onConfigChange = new EventEmitter<any>();
+  @ViewChild('editor', { static: false }) editor: JsonEditorComponent;
   componentData: any = {};
   metaData: any = {
     data: [],
@@ -47,14 +48,16 @@ export class ConfigureComponent implements OnChanges {
   }
 
   applyConfiguration() {
-    if(this.metaData.dataSource !== this.initData.metaData.dataSource) {
+    //if(this.metaData.dataSource !== this.initData.metaData.dataSource) {
       if(this.metaData.dataSource === 'local') {
+        const changedJson = this.editor.get();
+        this.metaData.data = changedJson;
         //fetch the updated data from editor, and reflect it to componentData.data, and re-render the tree
       } else if(this.metaData.dataSource === 'remote') {
         //check if the entered URL is in correct format, if yes fetch the data.. 
         //if result is without error, then re-render the tree with it
       }
-    }
+    //}
     this.componentData.metaData = this.metaData;
     this.onConfigChange.emit(this.componentData);
   }

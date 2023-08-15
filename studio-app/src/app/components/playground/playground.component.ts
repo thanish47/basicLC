@@ -47,7 +47,7 @@ export class PlaygroundComponent implements OnInit, OnChanges {
         this.updateMeta(data);
       },
       error: (err) => {
-        data.metaData.data = (data.metaData.additionals.dataType === 'array') ? [] : {};
+        data.metaData.data = this.resetComponentData(data);
         this.updateMeta(data);
       }
     })
@@ -61,6 +61,15 @@ export class PlaygroundComponent implements OnInit, OnChanges {
       this.fetchFromRemote(updatedMeta);
     } else if(updatedMeta.metaData.dataSource === 'local') {
       this.compData = {...updatedMeta};
+      let tempCompType = this.compType;
+      this.compType = '';
+      let self = this;
+      setTimeout(()=>{
+        self.compType = tempCompType;
+      }, 400);
     }
+  }
+  resetComponentData(data: any) {
+    return (data.metaData.additionals.dataType === 'array') ? [] : {};
   }
 }
