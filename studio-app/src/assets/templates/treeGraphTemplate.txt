@@ -224,3 +224,31 @@ export class ${name}Component implements OnChanges {
     stroke: #ccc;
     stroke-width: 1px;
   }
+
+########
+
+This component takes an input parameter 'data', by which the data can be passed to the component.
+The input data passed to 'data' should be in the below sample format:
+`
+  {
+    "name": "flare",
+    "children": [
+      {
+        "name": "analytics",
+        "children": [
+          {
+            "name": "cluster",
+            "children": [
+              {
+                "name": "AgglomerativeCluster", 
+                ...
+              },  
+              ...
+            ]
+          }
+          ...
+        ]
+      }
+    ]
+  }
+`

@@ -27,10 +27,19 @@ export class GeneratorService {
    if(filesMap && filesMap.length) {
     var zip = new JSZip();
     filesMap.map((fileContent: any)=>{
-      zip.folder(fileContent.name);
-      zip.file(fileContent.name+'/'+fileContent.name+'.component.ts', new Blob([fileContent.jsTemplate], { type : 'text/javascript' }))
-      zip.file(fileContent.name+'/'+fileContent.name+'.component.html', new Blob([fileContent.htmlTemplate], { type : 'text/html' }))
-      zip.file(fileContent.name+'/'+fileContent.name+'.component.css', new Blob([fileContent.cssTemplate], { type : 'text/css' }))
+      if(fileContent.type === 'component') {
+        zip.folder(fileContent.name);
+        zip.file(fileContent.name+'/'+fileContent.name+'.component.ts', new Blob([fileContent.jsTemplate], { type : 'text/javascript' }))
+        zip.file(fileContent.name+'/'+fileContent.name+'.component.html', new Blob([fileContent.htmlTemplate], { type : 'text/html' }))
+        zip.file(fileContent.name+'/'+fileContent.name+'.component.css', new Blob([fileContent.cssTemplate], { type : 'text/css' }))
+        if(fileContent.mdTemplate) {
+          zip.file(fileContent.name+'/'+fileContent.name+'.component.md', new Blob([fileContent.mdTemplate], { type : 'text/markdown' }))
+        }
+      }
+      if(fileContent.type === 'service') {
+        zip.folder('services');
+        zip.file('services/'+fileContent.name+'.service.ts', new Blob([fileContent.jsTemplate], { type : 'text/javascript' }))
+      }
     })
     zip.generateAsync({type: 'blob'}).then( (content) => {
       saveAs(content, 'exportedComponents.zip');
@@ -55,14 +64,17 @@ export class GeneratorService {
             })
           }
           let fileStrings = templateString.split('########');
-          resolve(
-            {
-              jsTemplate: fileStrings[0],
-              htmlTemplate: fileStrings[1],
-              cssTemplate: fileStrings[2],
-              name: compObj.metaData.additionals.selector
-            }
-          );
+          let resolvedData: any =  {
+            jsTemplate: fileStrings[0],
+            htmlTemplate: fileStrings[1],
+            cssTemplate: fileStrings[2],
+            name: compObj.metaData.additionals.selector,
+            type: 'component'
+          }
+          if(fileStrings[3]) {
+            resolvedData.mdTemplate = fileStrings[3];
+          }
+          resolve(resolvedData);
         },
         error: (err) => {
           console.log(err);

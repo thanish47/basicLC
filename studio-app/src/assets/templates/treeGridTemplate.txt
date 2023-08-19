@@ -93,3 +93,33 @@ export class ${name}Component implements OnChanges{
 </div>
 
 ########
+
+########
+
+This component takes an input parameter 'treeData', by which the data can be passed to the component.
+The input data passed to 'treeData' should be in the below sample format:
+`
+  [
+    {
+    "name": "flare",
+    "children": [
+        {
+          "name": "analytics",
+          "children": [
+            {
+              "name": "cluster",
+              "children": [
+                {
+                  "name": "AgglomerativeCluster", 
+                  ...
+                },  
+                ...
+              ]
+            }
+            ...
+          ]
+        }
+      ]
+    }
+  ]
+`
