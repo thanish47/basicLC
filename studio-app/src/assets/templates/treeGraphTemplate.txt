@@ -1,26 +1,13 @@
-module.exports = (prefix, selector, compname) => `
 import { Component, Input, OnInit, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
 import * as d3 from 'd3'
 
 @Component({
   selector: '${prefix}-${selector}',
-  template: '<div id="hierarchy-container" *ngIf="!hideTree"></div>',
-  styles:  ['  #hierarchy-container .node circle {
-    fill: #fff;
-    stroke: steelblue;
-    stroke-width: 1px;
-  }
-  #hierarchy-container .node text {
-    font: 14px sans-serif;
-  }
-  #hierarchy-container path.link {
-    fill: none;
-    stroke: #ccc;
-    stroke-width: 1px;
-  }'],
+  templateUrl: './${selector}.component.html',
+  styleUrls: ['./${selector}.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ${compname}Component implements OnChanges {
+export class ${name}Component implements OnChanges {
     @Input() data: any;
     margin = {top: 20, right: 90, bottom: 30, left: 90}
     width = 960 - this.margin.left - this.margin.right;
@@ -217,4 +204,23 @@ export class ${compname}Component implements OnChanges {
     });
   }
 }
-`
+
+########
+<div id="hierarchy-container" *ngIf="!hideTree"></div>
+
+########
+  #hierarchy-container .node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1px;
+  }
+  
+  #hierarchy-container .node text {
+    font: 14px sans-serif;
+  }
+  
+  #hierarchy-container path.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1px;
+  }

@@ -18,9 +18,9 @@ export class RepoMasterService {
         dataUrl: '/assets/data/sampleTreeGrid.json',
         additionals: {
           dataType: 'array',
-          name: "TreeGraph",
+          name: "TreeGrid",
           prefix: "app",
-          selector: "tree-graph"
+          selector: "tree-grid"
         }
       }
     },{
@@ -34,9 +34,9 @@ export class RepoMasterService {
         dataUrl: '/assets/data/sampleTreeGraph.json',
         additionals: {
           dataType: 'object',
-          name: "TreeGrid",
+          name: "TreeGraph",
           prefix: "app",
-          selector: "tree-grid"
+          selector: "tree-graph"
         }
       }
     }
