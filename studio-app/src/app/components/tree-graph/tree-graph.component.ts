@@ -18,19 +18,31 @@ export class TreeGraphComponent implements OnChanges {
     duration = 750;
     root: any;
     treemap: any;
+    treeAlreadyRendered = false;
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     for (let propName in changes) {
       let change = changes[propName];
-      if(change && change.currentValue) {
+      if(change && change.currentValue && change.currentValue.data) {
         this.data = change.currentValue.data;
         this.hideTree = false;
-        const self = this;
-        setTimeout(()=>{self.renderTree(self)}, 400);
+        
+        if(this.treeAlreadyRendered){
+          this.removeTree();
+        } 
+        this.deferredRenderTree();
       }
     }
+  }
+  deferredRenderTree() {
+    const self = this;
+    setTimeout(()=>{self.renderTree(self)}, 400);
+  }
+
+  removeTree() {
+    d3.select("#hierarchy-container svg").remove();
   }
 
   renderTree(rootSelf: any) {
@@ -53,6 +65,7 @@ export class TreeGraphComponent implements OnChanges {
     });
 
     rootSelf.update(rootSelf.root);
+    this.treeAlreadyRendered = true;
   }
 
   collapse(d: any) {

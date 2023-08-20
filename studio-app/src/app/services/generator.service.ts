@@ -25,7 +25,7 @@ export class GeneratorService {
 
   packageFilesFoldersAsZip(filesMap: any) {
    if(filesMap && filesMap.length) {
-    var zip = new JSZip();
+    let zip = new JSZip();
     filesMap.map((fileContent: any)=>{
       if(fileContent.type === 'component') {
         zip.folder(fileContent.name);

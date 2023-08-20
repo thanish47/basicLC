@@ -42,7 +42,7 @@ export class PlaygroundComponent implements OnInit, OnChanges {
   }
   fetchFromRemote(data: any) {
     return this.dataService.fetchComponentData(data.metaData.dataUrl).subscribe({
-      next: (result) => {
+      next: (result: any) => {
         data.metaData.data = result;
         this.updateMeta(data);
       },
@@ -62,7 +62,7 @@ export class PlaygroundComponent implements OnInit, OnChanges {
       this.fetchFromRemote(updatedMeta)
     } else if(updatedMeta.metaData.dataSource === 'local') {
       this.compData = {...updatedMeta};
-      this.repaintPlayground();
+      this.compData.metaData = {...updatedMeta.metaData} //hack to force the ngOnchanges in the child component
     }
   }
   resetComponentData(data: any) {

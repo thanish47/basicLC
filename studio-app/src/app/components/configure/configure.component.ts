@@ -40,10 +40,12 @@ export class ConfigureComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     for (let propName in changes) {
       let change = changes[propName];
-      this.componentData = change.currentValue;
-      this.metaData = this.componentData.metaData;
-      this.initData = {...this.componentData};
-      this.isDataReady = true;
+      if(change.currentValue) {
+        this.componentData = change.currentValue;
+        this.metaData = this.componentData.metaData;
+        this.initData = {...this.componentData};
+        this.isDataReady = true;
+      }
     }
   }
 
