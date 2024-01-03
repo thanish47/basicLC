@@ -58,7 +58,8 @@ testem.log
 /studio-app/libpeerconnection.log
 /studio-app/typings
 /studio-app/testem.log
-/studio-app/typings
+/studio-app/package-lock.json
+
 
 # System files
 .DS_Store
