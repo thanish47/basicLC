@@ -1,38 +1,18 @@
 # Low Code Platform Basic Studio 
 
-## What it is?
-This is a low code platform to deliver the functional components or Page level components as independent functional units that are UI Framework specific. This project will have multiple modules that shall be independently developed to complement each other..!
+## What is it?
+This is a low code platform to deliver the functional components or Page level components as independent functional units that are UI Framework specific. This project will have multiple modules that shall be independently developed to complement each other..! Each module is a framework specific, and is developed in the same framework & uses the same code that it exports
 
-First in this series is the Studio application, with a playground that is WYSIWYG. The flow starts with drag and drop of the UI components to configure its functional behavior, data source, styling aspects, localisation etc. And next by exporting the componets as metadata in JSON format which captures the required details of the components to generate the code of the component.
+The Studio application provides a playground which is a WYSIWYG enabling user to drag and drop the UI components onto it. Configuration section enables the user to configure the selected component's functional behavior, data source, styling aspects, localisation etc.  Once the configuration is tuned as required, next is to export the component, that generates the metadata in JSON format. This is further used by the generator that uses generator and the same component's code to generate the code of the component. This is the goodness of this application as the user would get the same code that he played with in the playground as the exported component, that are ready to be further customized or used, in to the existing application of the user.
 
-Second in this series is the Generator application, which shall take the metadata JSON exported from Studio application and generates the code as package that can either be consumed as a library as npm or Yarn module, or can be downloaded as zip packages to directly be consumed by the developer.
+There shall be multiple versions of this studio application that shall be developed in Angular, React.js, Vue.js and Svelte.
 
 There shall be multiple such generators, each generator application targeted to generate a JS framework specific code, like Web Components version, Angular version React version, VueJs version, Svelte Kit version!
 
 ## It's Story
-This Project is an evolving story to built a low code platform that is developer centric and is very generic. This is started as an assignment from one of my Guru, to serve as a testimonial of my portfolio outside my professional work. Added is my desire to contribute something to the developer community, in my own way. 
+This Project is an evolving story to built a low code platform that is developer centric and is very generic. This started from my experiences as part of job where I am involved in development of a low code platform and interaction with couple of 3rd party accelerators. I have felt that these were mostly business centric and not developer centric. Additionally, some force to adapt their platform and stay with them for the app to work. While this project will help to serve as a testimonial of my portfolio outside my professional work. Added is my desire to contribute something to the developer community, in my own way. 
 
-The output of this project shall be made available to developers to consume freely in their applications, to serve as a base and further modify for handling any business specific complexities.
-
-### Timeline
-##### Nascent Phase:
- As of now the studio application is at very nascent stages and has been started with Tree list and Tree Graph components. It shall provide basic ability to configure couple of components and directly export the components added to the basket in Studio app as Stand alone angular components, in a zip file. This is to complete the flow and set the stage to envision and see the big picture.
-
-### Practitioner phase
- The studio application will now be decoupled to generate metadata JSON and the angular specific code generator will be moved to a seperate application. Continue to make the Studio application and Generator application more robust and mature.
- 
- We will also add more functionality to complete functional flow of studio application. The list of components shall be expanded. The scope shall be expanded to include higher order components connecting multiple components and page layout components. 
-
-By the end of this phase, the studio application should be able to cover functional and page level components, styling aspects of them, multi level components and the communication flows between components! However, it shall support only to generate the Angular components alone.
-
-### Expansion phase
-During this phase, the time shall be spent on expanding support for more JS frameworks React, Vuew, Svelte and Web Components. Time shall also be spent on supporting more UI components libaries like Material for Angular, MUI for React, and other open source libraries that offer full set of components, including Charting libraries based on d3.js, chart.js etc
-
-### Conclusion phase
-Support from here on will be provided on mainly 3 aspects:
-- updating the existing generators to export latest versions of the libraries
-- expanding support for more UI component libraries on Studio application. 
-- Supporting on any issues found to battle-harden the generators.
+The output of this project shall be made available to developers to consume in their applications for free, to serve as a base and further modify for handling any business specific complexities.
 
 
 ## Technical Aspects:
