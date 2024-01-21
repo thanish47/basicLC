@@ -1,6 +1,6 @@
 .work-container {
     display: flex;
-    width: calc(100vw - 61px);
+    width: calc(100vw - 63px);
 }
 
 .play-container {

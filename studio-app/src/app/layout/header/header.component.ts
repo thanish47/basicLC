@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { RepoMasterService } from 'src/app/services/repo-master.service';
 import { GeneratorService } from 'src/app/services/generator.service';
 
@@ -8,20 +8,23 @@ import { GeneratorService } from 'src/app/services/generator.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  @Output("toggleRPanel") toggleRPanel: EventEmitter<any> = new EventEmitter();
   composList$: any;
   pageNumber = 0;
   compoNumber = 0;
-  comps = [];
-  constructor(private dataService: RepoMasterService, private exportCompService: GeneratorService) {
+  toggleStatus = false;
+  
+  constructor(private dataService: RepoMasterService) {
     this.composList$ = this.dataService.getComponentsAdded();
     this.composList$.subscribe((comps: any) => {
       this.compoNumber = !(comps) ? 0 : Object.keys(comps).length;
-      this.comps = comps;
     })
   }
-  exportComponents() {
+  showHideExportPanel() {
     if(this.compoNumber > 0) {
-      this.exportCompService.exportComponents(this.comps);
+      //this.exportCompService.exportComponents(this.comps);
+      this.toggleRPanel.emit();
+      this.toggleStatus = !this.toggleStatus;
     }
   }
 

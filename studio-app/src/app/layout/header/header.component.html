@@ -2,11 +2,11 @@
     <div class="header">
         <div class="left-part">
             <div class="img-holder"><img src="assets/svg/low-code.svg" width="50px"/></div>
-            <span class="app-title">Basic Low code playground</span>
+            <span class="app-title">Yanthram Studio</span>
         </div>
         <div class="right-part">
             <div class="sel-framwork">
-                 Current Framework for export: <button mat->Angular</button>
+                 Current Framework for export: <button mat->Angular v17</button>
             </div>
             <!-- <div class="badger-container inlineblock" 
                 matBadge="{{pageNumber}}" matBadgeOverlap="false" matBadgeColor="accent"
@@ -14,13 +14,23 @@
             >
                 <img src="assets/svg/page.svg" width="24px"/>
             </div> -->
+            @if (!toggleStatus) {
             <div class="badger-container" [ngClass]="{'hover-enabled': compoNumber>0}"
                 matBadge="{{compoNumber}}" matBadgeOverlap="false" matBadgeColor="accent"
                 [matTooltip]="getToolTip()"
-                (click)="exportComponents()"
+                (click)="showHideExportPanel()"
             >
                 <img src="assets/svg/component.svg" width="24px"/>
             </div>
+            }
+            @else {
+            <div class="close-container hover-enabled"
+                [matTooltip]="'Close the Export Panel'"
+                (click)="showHideExportPanel()"
+            >
+                <img src="assets/svg/close-icon.svg" width="24px"/>
+            </div>
+            }
         </div>
         
     </div>

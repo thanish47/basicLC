@@ -25,6 +25,7 @@ import { ConfigureComponent } from './components/configure/configure.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TreeGridComponent } from './components/tree-grid/tree-grid.component';
 import { TreeGraphComponent } from './components/tree-graph/tree-graph.component';
+import { RightSidePanelComponent } from './layout/right-side-panel/right-side-panel.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { TreeGraphComponent } from './components/tree-graph/tree-graph.component
     MatIconModule,
     MatListModule,
     TreeGridComponent,
+    RightSidePanelComponent,
     NgJsonEditorModule,
     FormsModule,
     ReactiveFormsModule, 

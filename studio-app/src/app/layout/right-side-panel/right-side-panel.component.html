@@ -1,0 +1,25 @@
+<div class="panel-wrap" [class.open]="showPanel">
+  
+    <div class="section-header">
+      <span class="section-label">Components Basket</span>
+      <a class="remove-link">remove all</a>
+    </div>
+    <div class="panel-body">
+      <div class="component-list">
+        <ul>
+          @for(compName of compKeys; track compName) {
+            <li>
+              <mat-card>
+                <mat-card-content>
+                    <img src="assets/svg/{{ comps[compName].icon }}.svg" width="24px" height="24px"/>
+                </mat-card-content>
+              </mat-card>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="action-footer">
+      <button mat-raised-button color="primary" (click)="exportComponents()">Export All</button>
+    </div>
+</div>
