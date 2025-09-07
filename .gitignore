@@ -11,9 +11,10 @@
 npm-debug.log
 yarn-error.log
 
-/studio-app/node_modules
-/studio-app/npm-debug.log
-/studio-app/yarn-error.log
+/studio-app-angular/dist
+/studio-app-angular/node_modules
+/studio-app-angular/npm-debug.log
+/studio-app-angular/yarn-error.log
 
 # IDEs and editors
 .idea/
@@ -35,12 +36,12 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
-/studio-app/.vscode/*
-!/studio-app/.vscode/settings.json
-!/studio-app/.vscode/tasks.json
-!/studio-app/.vscode/launch.json
-!/studio-app/.vscode/extensions.json
-/studio-app/.history/*
+/studio-app-angular/.vscode/*
+!/studio-app-angular/.vscode/settings.json
+!/studio-app-angular/.vscode/tasks.json
+!/studio-app-angular/.vscode/launch.json
+!/studio-app-angular/.vscode/extensions.json
+/studio-app-angular/.history/*
 
 # Miscellaneous
 /.angular/cache
@@ -51,14 +52,14 @@ yarn-error.log
 testem.log
 /typings
 
-/studio-app/.angular/cache
-/studio-app/.sass-cache/
-/studio-app/connect.lock
-/studio-app/coverage
-/studio-app/libpeerconnection.log
-/studio-app/typings
-/studio-app/testem.log
-/studio-app/package-lock.json
+/studio-app-angular/.angular/cache
+/studio-app-angular/.sass-cache/
+/studio-app-angular/connect.lock
+/studio-app-angular/coverage
+/studio-app-angular/libpeerconnection.log
+/studio-app-angular/typings
+/studio-app-angular/testem.log
+/studio-app-angular/package-lock.json
 
 
 # System files
