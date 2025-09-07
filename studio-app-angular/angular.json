@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "studio-app": {
+    "studio-app-angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/studio-app",
+            "outputPath": "dist/studio-app-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "studio-app:build:production"
+              "buildTarget": "studio-app-angular:build:production"
             },
             "development": {
-              "buildTarget": "studio-app:build:development"
+              "buildTarget": "studio-app-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "studio-app:build"
+            "buildTarget": "studio-app-angular:build"
           }
         },
         "test": {
