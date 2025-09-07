@@ -8,7 +8,7 @@ import { RightSidePanelComponent } from './layout/right-side-panel/right-side-pa
 export class AppComponent {
   @ViewChild(RightSidePanelComponent) rPanel: any;
   
-  title = 'studio-app';
+  title = 'studio-app-angular';
   toggleRPanel() {
     this.rPanel.togglePanel()
   }
