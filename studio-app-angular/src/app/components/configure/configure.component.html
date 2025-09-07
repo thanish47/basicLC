@@ -25,7 +25,8 @@
         </mat-radio-group>
         <div class="data-editor" *ngIf="metaData.dataSource === 'local'">
             <span class="editor-help-text">*pre-loaded with sample data, please edit to desired</span>
-            <json-editor [options]="editorOptions" [data]="metaData.data" #editor></json-editor>
+            <!-- <json-editor [options]="editorOptions" [data]="metaData.data" #editor></json-editor> -->
+             <app-json-editor #jsonEditor [data]="metaData.data" (dataChange)="editorDataChanged($event)"></app-json-editor>
         </div>
         <mat-form-field class="full-width-field" *ngIf="metaData.dataSource === 'remote'">
             <mat-label>Remote URL</mat-label>

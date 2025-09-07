@@ -1,0 +1,36 @@
+<div class="json-editor-container" [class.dark-theme]="options.theme === 'dark'">
+  <div class="json-editor-toolbar" *ngIf="!options.readOnly">
+    <button class="btn btn-sm" (click)="formatJson()" [disabled]="!isValidJson">
+      Format
+    </button>
+    <button class="btn btn-sm" (click)="minifyJson()" [disabled]="!isValidJson">
+      Minify
+    </button>
+    <div class="status-indicator" [class.valid]="isValidJson" [class.invalid]="!isValidJson">
+      {{ isValidJson ? 'Valid JSON' : 'Invalid JSON' }}
+    </div>
+  </div>
+  
+  <div class="json-editor-content">
+    <div class="line-numbers" *ngIf="options.lineNumbers">
+      <div class="line-number" *ngFor="let line of getLineNumbers()">{{ line }}</div>
+    </div>
+    
+    <textarea
+      #jsonTextarea
+      class="json-textarea"
+      [class.with-line-numbers]="options.lineNumbers"
+      [class.invalid]="!isValidJson"
+      [(ngModel)]="jsonString"
+      (input)="onTextChange()"
+      [readonly]="options.readOnly"
+      [style.max-height]="options.maxHeight"
+      spellcheck="false"
+      autocomplete="off"
+    ></textarea>
+  </div>
+  
+  <div class="error-message" *ngIf="!isValidJson">
+    {{ errorMessage }}
+  </div>
+</div>

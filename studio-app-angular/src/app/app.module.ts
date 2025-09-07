@@ -6,7 +6,6 @@ import { HttpClientModule } from  '@angular/common/http';
 import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from "@angular/material/icon"
 import { MatListModule } from '@angular/material/list'
-import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -26,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TreeGridComponent } from './components/tree-grid/tree-grid.component';
 import { TreeGraphComponent } from './components/tree-graph/tree-graph.component';
 import { RightSidePanelComponent } from './layout/right-side-panel/right-side-panel.component';
+import { JsonEditorComponent } from './utils/json-editor/json-editor.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import { RightSidePanelComponent } from './layout/right-side-panel/right-side-pa
     ComponentBarComponent,
     PlaygroundComponent,
     ConfigureComponent,
-    TreeGraphComponent
+    TreeGraphComponent,
+    JsonEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,6 @@ import { RightSidePanelComponent } from './layout/right-side-panel/right-side-pa
     MatListModule,
     TreeGridComponent,
     RightSidePanelComponent,
-    NgJsonEditorModule,
     FormsModule,
     ReactiveFormsModule, 
     MatFormFieldModule,

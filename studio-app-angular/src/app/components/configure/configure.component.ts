@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { TmpDataService } from 'src/app/services/tmp-data.service';
 import { RepoMasterService } from 'src/app/services/repo-master.service';
+import { JsonEditorComponent } from '../../utils/json-editor/json-editor.component';
 
 @Component({
   selector: 'app-configure',
@@ -11,7 +11,7 @@ import { RepoMasterService } from 'src/app/services/repo-master.service';
 export class ConfigureComponent implements OnChanges {
   @Input() compoObj: any;
   @Output() onConfigChange = new EventEmitter<any>();
-  @ViewChild('editor', { static: false }) editor: JsonEditorComponent;
+  @ViewChild('jsonEditor', { static: false }) jsonEditor: JsonEditorComponent;
   componentData: any = {};
   metaData: any = {
     data: [],
@@ -27,12 +27,6 @@ export class ConfigureComponent implements OnChanges {
   localData: any;
   constructor(private defaultDataService: TmpDataService, private repoMaster: RepoMasterService) {
     this.sampleData = this.defaultDataService.getDefaultData();
-    
-    this.editorOptions = new JsonEditorOptions();
-    this.editorOptions.mode = 'code';
-    this.editorOptions.enableSort = false;
-    this.editorOptions.enableTransform = false;
-    this.editorOptions.statusBar = false;
     
 
   }
@@ -50,16 +44,13 @@ export class ConfigureComponent implements OnChanges {
   }
 
   applyConfiguration() {
-    //if(this.metaData.dataSource !== this.initData.metaData.dataSource) {
-      if(this.metaData.dataSource === 'local') {
-        const changedJson = this.editor.get();
-        this.metaData.data = changedJson;
-        //fetch the updated data from editor, and reflect it to componentData.data, and re-render the tree
-      } else if(this.metaData.dataSource === 'remote') {
-        //check if the entered URL is in correct format, if yes fetch the data.. 
-        //if result is without error, then re-render the tree with it
-      }
-    //}
+    if(this.metaData.dataSource === 'local') {
+      // Data is already updated via editorDataChanged event
+      // No need to manually get data from editor
+    } else if(this.metaData.dataSource === 'remote') {
+      // TODO: Implement URL validation and fetching logic
+      console.log('Remote data source selected:', this.metaData.dataUrl);
+    }
     this.componentData.metaData = this.metaData;
     this.onConfigChange.emit(this.componentData);
   }
@@ -70,6 +61,10 @@ export class ConfigureComponent implements OnChanges {
     this.componentData.metaData = this.metaData;
     tempObj[name] = this.componentData;
     this.repoMaster.updateComponentCount(tempObj);
+  }
+
+  editorDataChanged(updatedJSONData: any) {
+    this.metaData.data = updatedJSONData;
   }
   onDataSourceChange(){
 
