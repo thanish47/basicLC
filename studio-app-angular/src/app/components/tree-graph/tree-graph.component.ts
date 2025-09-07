@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
-import * as d3 from 'd3'
+import { select } from 'd3-selection';
+import { tree } from 'd3-hierarchy';
+import { hierarchy } from 'd3-hierarchy';
 
 @Component({
   selector: 'app-tree-graph',
@@ -42,19 +44,19 @@ export class TreeGraphComponent implements OnChanges {
   }
 
   removeTree() {
-    d3.select("#hierarchy-container svg").remove();
+    select("#hierarchy-container svg").remove();
   }
 
   renderTree(rootSelf: any) {
-    rootSelf.svg = d3.select("#hierarchy-container").append("svg")
+    rootSelf.svg = select("#hierarchy-container").append("svg")
     .attr("width", rootSelf.width + rootSelf.margin.right + rootSelf.margin.left)
     .attr("height", rootSelf.height + rootSelf.margin.top + rootSelf.margin.bottom)
     .append("g")
     .attr("transform", "translate("
           + rootSelf.margin.left + "," + rootSelf.margin.top + ")");
 
-    rootSelf.treemap = d3.tree().size([rootSelf.height, rootSelf.width]);
-    rootSelf.root = d3.hierarchy(rootSelf.data, (d: any)  => { return d.children; });
+    rootSelf.treemap = tree().size([rootSelf.height, rootSelf.width]);
+    rootSelf.root = hierarchy(rootSelf.data, (d: any)  => { return d.children; });
     rootSelf.root.x0 = this.height / 2;
     rootSelf.root.y0 = 0;
 
