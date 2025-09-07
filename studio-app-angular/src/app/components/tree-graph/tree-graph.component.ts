@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
 import { select } from 'd3-selection';
-import { tree } from 'd3-hierarchy';
-import { hierarchy } from 'd3-hierarchy';
+import { tree, hierarchy } from 'd3-hierarchy';
+import 'd3-transition'; // This adds transition methods to d3-selection
 
 @Component({
   selector: 'app-tree-graph',
