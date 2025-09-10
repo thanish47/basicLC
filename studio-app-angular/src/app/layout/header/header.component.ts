@@ -1,25 +1,27 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { RepoMasterService } from 'src/app/services/repo-master.service';
 import { GeneratorService } from 'src/app/services/generator.service';
+import { ComponentData } from '../../interfaces/component-data.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css'],
+    styleUrl: './header.component.css',
     standalone: false
 })
 export class HeaderComponent {
-  @Output("toggleRPanel") toggleRPanel: EventEmitter<any> = new EventEmitter();
-  composList$: any;
+  @Output("toggleRPanel") toggleRPanel: EventEmitter<void> = new EventEmitter<void>();
+  composList$: BehaviorSubject<Record<string, ComponentData>>;
   pageNumber = 0;
   compoNumber = 0;
   toggleStatus = false;
   
   constructor(private dataService: RepoMasterService) {
     this.composList$ = this.dataService.getComponentsAdded();
-    this.composList$.subscribe((comps: any) => {
-      this.compoNumber = !(comps) ? 0 : Object.keys(comps).length;
-    })
+    this.composList$.subscribe((comps: Record<string, ComponentData>) => {
+      this.compoNumber = comps ? Object.keys(comps).length : 0;
+    });
   }
   showHideExportPanel() {
     if(this.compoNumber > 0) {

@@ -3,6 +3,8 @@ import { RepoMasterService } from 'src/app/services/repo-master.service';
 import { GeneratorService } from 'src/app/services/generator.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule  } from '@angular/material/button';
+import { ComponentData, ComponentItem, ComponentDataWithIcon } from '../../interfaces/component-data.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-right-side-panel',
@@ -11,11 +13,11 @@ import { MatButtonModule  } from '@angular/material/button';
     styleUrl: './right-side-panel.component.css'
 })
 export class RightSidePanelComponent implements OnInit {
-  composList$: any;
+  composList$: BehaviorSubject<Record<string, ComponentData>>;
   showPanel = false;
-  comps: any;
-  compKeys: any = [];
-  cmps = [
+  comps: Record<string, ComponentData & { icon?: string }> = {};
+  compKeys: string[] = [];
+  cmps: ComponentItem[] = [
     {
       name: "treeGrid",
       icon: "tree-table"
@@ -30,11 +32,10 @@ export class RightSidePanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.composList$.subscribe((comps: any) => {
-      //console.log('comps', comps)
+    this.composList$.subscribe((comps: Record<string, ComponentData>) => {
       this.comps = comps;
-      this.compKeys = Object.keys(comps)
-    })
+      this.compKeys = Object.keys(comps);
+    });
   }
 
   togglePanel() {

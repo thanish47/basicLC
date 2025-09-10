@@ -2,17 +2,18 @@ import { Component, Input, OnInit, ViewEncapsulation, SimpleChanges, OnChanges }
 import { select } from 'd3-selection';
 import { tree, hierarchy } from 'd3-hierarchy';
 import 'd3-transition'; // This adds transition methods to d3-selection
+import { TreeNodeData } from '../../interfaces/component-data.interface';
 
 @Component({
     selector: 'app-tree-graph',
     templateUrl: './tree-graph.component.html',
-    styleUrls: ['./tree-graph.component.css'],
+    styleUrl: './tree-graph.component.css',
     encapsulation: ViewEncapsulation.None,
     standalone: false
 })
 export class TreeGraphComponent implements OnChanges {
-    @Input() data: any;
-    margin = {top: 20, right: 90, bottom: 30, left: 90}
+    @Input() data: any = null;
+    margin = {top: 20, right: 90, bottom: 30, left: 90};
     width = 960 - this.margin.left - this.margin.right;
     height = 500 - this.margin.top - this.margin.bottom;
     hideTree = true;
@@ -26,13 +27,13 @@ export class TreeGraphComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    for (let propName in changes) {
-      let change = changes[propName];
-      if(change && change.currentValue && change.currentValue.data) {
+    for (const propName in changes) {
+      const change = changes[propName];
+      if (change?.currentValue?.data) {
         this.data = change.currentValue.data;
         this.hideTree = false;
         
-        if(this.treeAlreadyRendered){
+        if (this.treeAlreadyRendered) {
           this.removeTree();
         } 
         this.deferredRenderTree();
