@@ -5,11 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule  } from '@angular/material/button';
 
 @Component({
-  selector: 'app-right-side-panel',
-  imports: [MatCardModule, MatButtonModule],
-  standalone: true,
-  templateUrl: './right-side-panel.component.html',
-  styleUrl: './right-side-panel.component.css'
+    selector: 'app-right-side-panel',
+    imports: [MatCardModule, MatButtonModule],
+    templateUrl: './right-side-panel.component.html',
+    styleUrl: './right-side-panel.component.css'
 })
 export class RightSidePanelComponent implements OnInit {
   composList$: any;

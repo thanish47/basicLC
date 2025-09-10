@@ -2,9 +2,10 @@ import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { RepoMasterService } from 'src/app/services/repo-master.service';
 
 @Component({
-  selector: 'app-playground',
-  templateUrl: './playground.component.html',
-  styleUrls: ['./playground.component.css']
+    selector: 'app-playground',
+    templateUrl: './playground.component.html',
+    styleUrls: ['./playground.component.css'],
+    standalone: false
 })
 export class PlaygroundComponent implements OnInit, OnChanges {
   compType = 'none';

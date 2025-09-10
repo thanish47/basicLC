@@ -4,10 +4,11 @@ import { tree, hierarchy } from 'd3-hierarchy';
 import 'd3-transition'; // This adds transition methods to d3-selection
 
 @Component({
-  selector: 'app-tree-graph',
-  templateUrl: './tree-graph.component.html',
-  styleUrls: ['./tree-graph.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-tree-graph',
+    templateUrl: './tree-graph.component.html',
+    styleUrls: ['./tree-graph.component.css'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class TreeGraphComponent implements OnChanges {
     @Input() data: any;
