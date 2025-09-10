@@ -11,7 +11,7 @@ export interface JsonEditorOptions {
 @Component({
     selector: 'app-json-editor',
     templateUrl: './json-editor.component.html',
-    styleUrls: ['./json-editor.component.css'],
+    styleUrl: './json-editor.component.css',
     standalone: false
 })
 export class JsonEditorComponent implements OnInit {

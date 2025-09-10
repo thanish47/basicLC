@@ -6,7 +6,7 @@ import { JsonEditorComponent } from '../../utils/json-editor/json-editor.compone
 @Component({
     selector: 'app-configure',
     templateUrl: './configure.component.html',
-    styleUrls: ['./configure.component.css'],
+    styleUrl: './configure.component.css',
     standalone: false
 })
 export class ConfigureComponent implements OnChanges {

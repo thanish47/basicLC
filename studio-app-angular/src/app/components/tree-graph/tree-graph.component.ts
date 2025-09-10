@@ -6,7 +6,7 @@ import 'd3-transition'; // This adds transition methods to d3-selection
 @Component({
     selector: 'app-tree-graph',
     templateUrl: './tree-graph.component.html',
-    styleUrls: ['./tree-graph.component.css'],
+    styleUrl: './tree-graph.component.css',
     encapsulation: ViewEncapsulation.None,
     standalone: false
 })

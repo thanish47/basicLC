@@ -3,7 +3,7 @@ import { RightSidePanelComponent } from './layout/right-side-panel/right-side-pa
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrl: './app.component.css',
     standalone: false
 })
 export class AppComponent {
