@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import * as JSZip from 'jszip';
+import JSZip from 'jszip';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +41,7 @@ export class GeneratorService {
         zip.file('services/'+fileContent.name+'.service.ts', new Blob([fileContent.jsTemplate], { type : 'text/javascript' }))
       }
     })
-    zip.generateAsync({type: 'blob'}).then( (content) => {
+    zip.generateAsync({type: 'blob'}).then( (content: Blob) => {
       saveAs(content, 'exportedComponents.zip');
     });
    }      
