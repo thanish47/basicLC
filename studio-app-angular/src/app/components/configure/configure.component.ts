@@ -4,9 +4,10 @@ import { RepoMasterService } from 'src/app/services/repo-master.service';
 import { JsonEditorComponent } from '../../utils/json-editor/json-editor.component';
 
 @Component({
-  selector: 'app-configure',
-  templateUrl: './configure.component.html',
-  styleUrls: ['./configure.component.css']
+    selector: 'app-configure',
+    templateUrl: './configure.component.html',
+    styleUrls: ['./configure.component.css'],
+    standalone: false
 })
 export class ConfigureComponent implements OnChanges {
   @Input() compoObj: any;

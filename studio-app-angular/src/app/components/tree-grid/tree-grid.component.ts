@@ -22,11 +22,10 @@ interface TreeFlatNode {
 }
 
 @Component({
-  selector: 'app-tree-grid',
-  templateUrl: './tree-grid.component.html',
-  styleUrls: ['./tree-grid.component.css'],
-  standalone: true,
-  imports: [CommonModule, MatTreeModule, MatButtonModule, MatIconModule]
+    selector: 'app-tree-grid',
+    templateUrl: './tree-grid.component.html',
+    styleUrls: ['./tree-grid.component.css'],
+    imports: [CommonModule, MatTreeModule, MatButtonModule, MatIconModule]
 })
 export class TreeGridComponent implements OnChanges{
   @Input() treeData: any;

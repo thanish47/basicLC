@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from  '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from  '@angular/common/http';
 
 import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from "@angular/material/icon"
@@ -27,38 +27,31 @@ import { TreeGraphComponent } from './components/tree-graph/tree-graph.component
 import { RightSidePanelComponent } from './layout/right-side-panel/right-side-panel.component';
 import { JsonEditorComponent } from './utils/json-editor/json-editor.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    ComponentBarComponent,
-    PlaygroundComponent,
-    ConfigureComponent,
-    TreeGraphComponent,
-    JsonEditorComponent
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
-    TreeGridComponent,
-    RightSidePanelComponent,
-    FormsModule,
-    ReactiveFormsModule, 
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    MatButtonModule,
-    MatBadgeModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HeaderComponent,
+        ComponentBarComponent,
+        PlaygroundComponent,
+        ConfigureComponent,
+        TreeGraphComponent,
+        JsonEditorComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatIconModule,
+        MatListModule,
+        TreeGridComponent,
+        RightSidePanelComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        MatButtonModule,
+        MatBadgeModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

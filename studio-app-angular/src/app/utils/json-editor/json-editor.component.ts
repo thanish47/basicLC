@@ -9,9 +9,10 @@ export interface JsonEditorOptions {
 }
 
 @Component({
-  selector: 'app-json-editor',
-  templateUrl: './json-editor.component.html',
-  styleUrls: ['./json-editor.component.css']
+    selector: 'app-json-editor',
+    templateUrl: './json-editor.component.html',
+    styleUrls: ['./json-editor.component.css'],
+    standalone: false
 })
 export class JsonEditorComponent implements OnInit {
   @Input() data: any = {};

@@ -3,9 +3,10 @@ import { RepoMasterService } from 'src/app/services/repo-master.service';
 import { GeneratorService } from 'src/app/services/generator.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
+    standalone: false
 })
 export class HeaderComponent {
   @Output("toggleRPanel") toggleRPanel: EventEmitter<any> = new EventEmitter();
