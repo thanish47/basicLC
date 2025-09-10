@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { VERSION } from '@angular/core';
 import { RepoMasterService } from 'src/app/services/repo-master.service';
 import { GeneratorService } from 'src/app/services/generator.service';
 import { ComponentData } from '../../interfaces/component-data.interface';
@@ -16,6 +17,7 @@ export class HeaderComponent {
   pageNumber = 0;
   compoNumber = 0;
   toggleStatus = false;
+  angularVersion = VERSION.major;
   
   constructor(private dataService: RepoMasterService) {
     this.composList$ = this.dataService.getComponentsAdded();
