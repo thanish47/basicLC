@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewC
 import { TmpDataService } from 'src/app/services/tmp-data.service';
 import { RepoMasterService } from 'src/app/services/repo-master.service';
 import { JsonEditorComponent } from '../../utils/json-editor/json-editor.component';
+import { ComponentData, ComponentDefinition, ComponentMetaData } from '../../interfaces/component-data.interface';
 
 @Component({
     selector: 'app-configure',
@@ -10,19 +11,25 @@ import { JsonEditorComponent } from '../../utils/json-editor/json-editor.compone
     standalone: false
 })
 export class ConfigureComponent implements OnChanges {
-  @Input() compoObj: any;
-  @Output() onConfigChange = new EventEmitter<any>();
-  @ViewChild('jsonEditor', { static: false }) jsonEditor: JsonEditorComponent;
-  componentData: any = {};
-  metaData: any = {
-    data: [],
-    dataSource: ""
-  }
-  initData: any;
+  @Input() compoObj: ComponentDefinition | null = null;
+  @Output() onConfigChange = new EventEmitter<ComponentData>();
+  @ViewChild('jsonEditor', { static: false }) jsonEditor!: JsonEditorComponent;
+  componentData: ComponentData = { name: '', metaData: { label: '', dataSource: 'local', additionals: { dataType: 'array', name: '', prefix: '', selector: '' } } };
+  metaData: ComponentMetaData = {
+    label: '',
+    dataSource: 'local',
+    additionals: {
+      dataType: 'array',
+      name: '',
+      prefix: '',
+      selector: ''
+    }
+  };
+  initData: ComponentDefinition | null = null;
   isDataReady = false;
   sampleData: any;
   editorOptions: any;
-  dataSource: any;
+  dataSource: string = '';
   compoCount$: any;
   remoteData: any;
   localData: any;
@@ -33,12 +40,12 @@ export class ConfigureComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    for (let propName in changes) {
-      let change = changes[propName];
-      if(change.currentValue) {
-        this.componentData = change.currentValue;
-        this.metaData = this.componentData.metaData;
-        this.initData = {...this.componentData};
+    for (const propName in changes) {
+      const change = changes[propName];
+      if (change?.currentValue) {
+        this.componentData = { ...change.currentValue };
+        this.metaData = { ...this.componentData.metaData };
+        this.initData = change.currentValue;
         this.isDataReady = true;
       }
     }
@@ -57,14 +64,14 @@ export class ConfigureComponent implements OnChanges {
   }
 
   addCompoToBasket() {
-    let name = this.componentData.name;
-    let tempObj: any = {};
+    const name = this.componentData.name;
+    const tempObj: Record<string, ComponentData> = {};
     this.componentData.metaData = this.metaData;
     tempObj[name] = this.componentData;
     this.repoMaster.updateComponentCount(tempObj);
   }
 
-  editorDataChanged(updatedJSONData: any) {
+  editorDataChanged(updatedJSONData: any[]): void {
     this.metaData.data = updatedJSONData;
   }
   onDataSourceChange(){

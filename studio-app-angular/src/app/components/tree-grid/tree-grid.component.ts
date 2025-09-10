@@ -4,15 +4,8 @@ import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { TreeNodeData } from '../../interfaces/component-data.interface';
 
-/**
- * Food data with nested structure.
- * Each node has a name and an optional list of children.
- */
-interface TreeNode {
-  name: string;
-  children?: TreeNode[];
-}
 
 /** Flat node with expandable and level information */
 interface TreeFlatNode {
@@ -28,9 +21,9 @@ interface TreeFlatNode {
     imports: [CommonModule, MatTreeModule, MatButtonModule, MatIconModule]
 })
 export class TreeGridComponent implements OnChanges{
-  @Input() treeData: any;
+  @Input() treeData: any = null;
   renderTreeGrid = false
-  private _transformer = (node: TreeNode, level: number) => {
+  private _transformer = (node: TreeNodeData, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
@@ -57,9 +50,9 @@ export class TreeGridComponent implements OnChanges{
   hasChild = (_: number, node: TreeFlatNode) => node.expandable;
 
   ngOnChanges(changes: SimpleChanges): void {
-    for (let propName in changes) {
-      let change = changes[propName];
-      if(change && change.currentValue && change.currentValue.data) {
+    for (const propName in changes) {
+      const change = changes[propName];
+      if (change?.currentValue?.data) {
         const initData = change.currentValue;
         this.dataSource.data = initData.data;
         this.renderTreeGrid = true;
