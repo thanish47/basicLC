@@ -9,7 +9,7 @@
 
  ## Live app
   You can see this application in action here:
-  👉 <a href="http://thanish.com/demo/studio-app-angular/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+  👉 <a href="https://basiclc.thanish.com/" target="_blank" rel="noopener noreferrer">Live Demo</a>
 
 ## It's Story
  This Project is an evolving story to build a low code platform that is developer centric and is very generic. The intention is to build a platform that would help the developers in their daily development with no strings attached. While this project was developed to help to serve as a testimonial of my portfolio outside my professional work. Added is my desire to contribute something to the developer community, in my own way.
